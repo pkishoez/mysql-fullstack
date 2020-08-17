@@ -10,7 +10,7 @@ const dbsession = mysqlx.getSession({
 
 const executeQuery = async (query) => {
 	const session = await dbsession;
-	await session.sql("USE sakila").execute();
+	await session.sql("USE whatsapp_clone").execute();
 	return await session
 		.sql(query)
 		.execute()
