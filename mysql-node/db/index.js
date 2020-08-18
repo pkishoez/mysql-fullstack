@@ -28,6 +28,14 @@ const user = {
         `;
 		return executeQuery(query);
 	},
+	getAll() {
+		const query = `
+            SELECT *
+            from
+                user
+        `;
+		return executeQuery(query);
+	},
 };
 
 // Conversation Part.
@@ -58,11 +66,13 @@ const conversation = {
             
             COMMIT;
         `;
+		console.log(query);
 		return executeQuery(query);
 	},
 	get({ user1, user2, offset = 0, limit = 20 }) {
 		const query = `
             SELECT
+                from_user,
                 (select name from user where id=from_user) as from_user,
                 (select name from user where id=to_user) as to_user,
                 content, type, DATE_FORMAT(time, "%D %b %Y, %r") 
